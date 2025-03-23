@@ -8,10 +8,13 @@ import Container from "@/components/Container";
 import Section from "@/components/Section";
 import Stats from "@/components/Stats";
 import CTA from "@/components/CTA";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const HomePage: React.FC = () => {
   return (
     <>
+      <Header />
       <Hero />
       <Logos />
       <Container>
@@ -39,6 +42,7 @@ const HomePage: React.FC = () => {
 
         <CTA />
       </Container>
+      <Footer />
     </>
   );
 };
