@@ -1,23 +1,25 @@
 import { ITestimonial } from "@/types";
 import { siteDetails } from "./siteDetails";
 
+siteDetails.siteName = "payee";
+
 export const testimonials: ITestimonial[] = [
-    {
-        name: 'John Smith',
-        role: 'CEO at Company',
-        message: `${siteDetails.siteName}'s AI-driven insights have transformed how we approach financial planning for our clients. It's an invaluable resource in the modern financial landscape.`,
-        avatar: '/images/testimonial-1.webp',
-    },
-    {
-        name: 'Jane Doe',
-        role: 'CTO at Startup',
-        message: `As a CTO, I'm impressed by ${siteDetails.siteName}'s robust security measures and seamless integrations. It's rare to find an app that balances user-friendliness with such advanced technology.`,
-        avatar: '/images/testimonial-2.webp',
-    },
-    {
-        name: 'Emily Johnson',
-        role: 'Product Manager',
-        message: `${siteDetails.siteName} is revolutionizing personal finance management. Its intuitive design and powerful features make it an indispensable tool for anyone serious about financial growth.`,
-        avatar: '/images/testimonial-3.webp',
-    },
+  {
+    name: "John Smith",
+    role: "HR Manager at TechCorp",
+    message: `${siteDetails.siteName} has streamlined our payroll process and made staffing management effortless. It's a game-changer for our HR department.`,
+    avatar: "/images/testimonial-1.webp",
+  },
+  {
+    name: "Jane Doe",
+    role: "COO at Innovatech",
+    message: `With ${siteDetails.siteName}, we have significantly reduced payroll errors and improved employee satisfaction. The platform's efficiency and reliability are unmatched.`,
+    avatar: "/images/testimonial-2.webp",
+  },
+  {
+    name: "Emily Johnson",
+    role: "Finance Director at FinSolutions",
+    message: `${siteDetails.siteName} offers unparalleled insights and control over our staffing and payroll operations. It's an essential tool for any business looking to optimize their HR processes.`,
+    avatar: "/images/testimonial-3.webp",
+  },
 ];
