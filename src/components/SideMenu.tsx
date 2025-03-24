@@ -4,16 +4,10 @@ import React from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import {
-  LogOut,
   LayoutDashboard,
-  CalendarClock,
   FileText,
   Users,
-  User,
-  Wallet,
   BarChart3,
-  TrendingUp,
-  DollarSign,
   LucideProps,
   LogOutIcon,
 } from "lucide-react";
@@ -24,51 +18,31 @@ interface MenuItem {
     Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
   >;
   path: string;
-  disabled?: boolean; // Optional disabled property
+  disabled?: boolean;
+  soon?: boolean; // Add soon property
 }
 
 const SideMenu = () => {
   const pathname = usePathname();
-  const router = useRouter();
 
   const menuItems: MenuItem[] = [
-    // Explicitly type menuItems
     {
       name: "Dashboard",
       icon: LayoutDashboard,
       path: "/account/dashboard",
     },
     {
-      name: "Scheduled Payments",
-      icon: CalendarClock,
-      path: "/account/scheduled-payments",
+      name: "Staffing",
+      icon: Users,
+      path: "/account/staffing",
     },
     { name: "Payroll", icon: FileText, path: "/account/payroll" },
-    { name: "Workers", icon: Users, path: "/account/workers" },
-    {
-      name: "Pay Workers",
-      icon: DollarSign,
-      path: "/account/pay_worker",
-    },
-    {
-      name: "Contractors",
-      icon: User,
-      path: "/account/contractors",
-    },
-    {
-      name: "Wallet",
-      icon: Wallet,
-      path: "/account/wallet",
-    },
     {
       name: "Accounting",
       icon: BarChart3,
       path: "/account/accounting",
-    },
-    {
-      name: "Investments",
-      icon: TrendingUp,
-      path: "/account/investment",
+      disabled: true,
+      soon: true,
     },
   ];
 
@@ -119,6 +93,9 @@ const SideMenu = () => {
                 <span className="whitespace-nowrap transition-all duration-300 w-full opacity-100">
                   {item.name}
                 </span>
+                {item.soon && (
+                  <span className="text-blue-500 text-xs ml-2">Soon</span>
+                )}
               </Link>
             </li>
           ))}
@@ -127,9 +104,8 @@ const SideMenu = () => {
 
       {/* Logout */}
       <div className="p-4 border-t dark:border-gray-700 flex flex-col gap-3">
-        {/* Logout */}
         <Link
-          href="/logout"
+          href="/"
           className="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
           title="Logout"
         >
