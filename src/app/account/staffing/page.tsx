@@ -622,7 +622,12 @@ export default function Staffing() {
                     : "text-slate-500 hover:text-slate-700"
                 }`}
                 onClick={() => {
-                  setActiveTab(tab.id as any);
+                  setActiveTab(
+                    tab.id as
+                      | "WORKER LIST"
+                      | "INVITE WORKER"
+                      | "BULK WORKER INVITE"
+                  );
                   if (tab.id === "INVITE_WORKER") {
                     setIsEditingWorker(false);
                     setEditingWorkerId(null);

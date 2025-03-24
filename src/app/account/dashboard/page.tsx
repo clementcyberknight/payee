@@ -45,57 +45,67 @@ export default function Dashboard() {
     : "";
 
   // Filter transactions based on search query and time range
-  const handleSearch = useCallback((query: string) => {
-    setSearchQuery(query);
-    let filtered = [...mockTransactions];
-    const today = new Date();
+  const handleSearch = useCallback(
+    (query: string) => {
+      setSearchQuery(query);
+      let filtered = [...mockTransactions];
+      const today = new Date();
 
-    if (timeRange !== "All time") {
-      const rangeDays: { [key: string]: number } = {
-        "Last 7 days": 7,
-        "Last 30 days": 30,
-        "Last 90 days": 90,
-      };
+      if (timeRange !== "All time") {
+        const rangeDays: { [key: string]: number } = {
+          "Last 7 days": 7,
+          "Last 30 days": 30,
+          "Last 90 days": 90,
+        };
 
-      const selectedRangeDays = rangeDays[timeRange] || 0;
+        const selectedRangeDays = rangeDays[timeRange] || 0;
 
-      filtered = mockTransactions.filter((transaction) => {
-        const transactionDate = transaction.timestamp
-          ? new Date(transaction.timestamp.seconds * 1000)
-          : null;
-        if (!transactionDate) return false;
-        const diffTime = Math.abs(today.getTime() - transactionDate.getTime());
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        return diffDays <= selectedRangeDays;
-      });
-    }
+        filtered = mockTransactions.filter((transaction) => {
+          const transactionDate = transaction.timestamp
+            ? new Date(transaction.timestamp.seconds * 1000)
+            : null;
+          if (!transactionDate) return false;
+          const diffTime = Math.abs(
+            today.getTime() - transactionDate.getTime()
+          );
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+          return diffDays <= selectedRangeDays;
+        });
+      }
 
-    const lowerSearch = query.toLowerCase();
-    filtered = filtered.filter(
-      (transaction) =>
-        (transaction.workerName &&
-          transaction.workerName.toLowerCase().includes(lowerSearch)) ||
-        (transaction.transactionid &&
-          transaction.transactionid.toLowerCase().includes(lowerSearch)) ||
-        (transaction.workerId &&
-          transaction.workerId.toLowerCase().includes(lowerSearch)) ||
-        (transaction.type &&
-          transaction.type.toLowerCase().includes(lowerSearch)) ||
-        (transaction.amount &&
-          formatCurrency(transaction.amount)
-            .toLowerCase()
-            .includes(lowerSearch)) ||
-        (transaction.timestamp &&
-          formatDate(transaction.timestamp).toLowerCase().includes(lowerSearch))
-    );
+      const lowerSearch = query.toLowerCase();
+      filtered = filtered.filter(
+        (transaction) =>
+          (transaction.workerName &&
+            transaction.workerName.toLowerCase().includes(lowerSearch)) ||
+          (transaction.transactionid &&
+            transaction.transactionid.toLowerCase().includes(lowerSearch)) ||
+          (transaction.workerId &&
+            transaction.workerId.toLowerCase().includes(lowerSearch)) ||
+          (transaction.type &&
+            transaction.type.toLowerCase().includes(lowerSearch)) ||
+          (transaction.amount &&
+            formatCurrency(transaction.amount)
+              .toLowerCase()
+              .includes(lowerSearch)) ||
+          (transaction.timestamp &&
+            formatDate(transaction.timestamp)
+              .toLowerCase()
+              .includes(lowerSearch))
+      );
 
-    setFilteredTransactions(filtered);
-  }, []);
+      setFilteredTransactions(filtered);
+    },
+    [timeRange]
+  );
 
-  const handleTimeRangeChange = useCallback((range: string) => {
-    setTimeRange(range);
-    handleSearch(searchQuery); // Re-filter with new time range
-  }, []);
+  const handleTimeRangeChange = useCallback(
+    (range: string) => {
+      setTimeRange(range);
+      handleSearch(searchQuery); // Re-filter with new time range
+    },
+    [handleSearch, searchQuery]
+  );
 
   const handleShowMore = useCallback((transaction: Transaction) => {
     setSelectedTransaction(transaction);
@@ -115,7 +125,7 @@ export default function Dashboard() {
               Payroll Dashboard
             </h1>
             <p className="text-slate-500 mt-1">
-              Welcome back. Here's your payroll activity overview.
+              Welcome back. Here is your payroll activity overview.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">

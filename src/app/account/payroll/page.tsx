@@ -414,7 +414,7 @@ export default function Payroll() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-8">
+    <div className="min-h-screen bg-white py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Toast Notification */}
         {showToast && (
@@ -439,7 +439,7 @@ export default function Payroll() {
           <div>
             <h1 className="text-3xl font-bold text-slate-800">Payroll</h1>
             <p className="text-slate-500 mt-1">
-              Manage your team's payroll and bonus payments
+              Manage your team payroll and bonus payments
             </p>
           </div>
           <div className="flex items-center gap-3">

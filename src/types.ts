@@ -69,3 +69,11 @@ export interface Transaction {
     seconds: number;
   };
 }
+
+export interface Stats {
+  workersPercentageChange: number;
+  nextPaymentDate: Date | null;
+  totalPaymentsThisMonth: number;
+  paymentsPercentageChange: number;
+  payrollBalance: number;
+}
