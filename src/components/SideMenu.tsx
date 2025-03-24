@@ -9,6 +9,7 @@ import {
   Users,
   BarChart3,
   LogOutIcon,
+  HistoryIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   Settings,
@@ -52,11 +53,9 @@ const SideMenu = () => {
       path: "/account/payroll",
     },
     {
-      name: "Accounting",
-      icon: BarChart3,
-      path: "/account/accounting",
-      disabled: true,
-      soon: true,
+      name: "Transaction History",
+      icon: HistoryIcon,
+      path: "/account/transactionHistory",
     },
     {
       name: "Settings",
